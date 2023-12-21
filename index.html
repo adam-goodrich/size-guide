@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      function calculateBandCupSize(underBandSize, fullBustSize) {
+        let result = {
+          possibleBandCupSizes: [],
+          possibleBraletteSizes: [],
+        };
+
+        if (underBandSize >= 27 && underBandSize <= 29) {
+          if (fullBustSize >= 30 && fullBustSize <= 32) {
+            result.possibleBandCupSizes.push("32A");
+            result.possibleBraletteSizes.push("XS");
+          }
+          if (fullBustSize >= 31 && fullBustSize <= 33) {
+            result.possibleBandCupSizes.push("32B");
+            result.possibleBraletteSizes.push("XS");
+          }
+        }
+
+        if (underBandSize >= 29 && underBandSize <= 31) {
+          if (fullBustSize >= 33 && fullBustSize <= 34) {
+            result.possibleBandCupSizes.push("34A", "34C", "34D");
+            result.possibleBraletteSizes.push("S", "M");
+          }
+          if (fullBustSize >= 31 && fullBustSize <= 33) {
+            result.possibleBandCupSizes.push("34B");
+            result.possibleBraletteSizes.push("S");
+          }
+          if (fullBustSize >= 34 && fullBustSize <= 36) {
+            result.possibleBandCupSizes.push("36B", "36C", "34DD");
+            result.possibleBraletteSizes.push("M");
+          }
+        }
+
+        if (underBandSize >= 31 && underBandSize <= 33) {
+          if (fullBustSize >= 34 && fullBustSize <= 36) {
+            result.possibleBandCupSizes.push("38B", "36D");
+            result.possibleBraletteSizes.push("M");
+          }
+          if (fullBustSize >= 36 && fullBustSize <= 38) {
+            result.possibleBandCupSizes.push("36D", "36DD");
+            result.possibleBraletteSizes.push("L");
+          }
+        }
+
+        if (underBandSize >= 33 && underBandSize <= 36) {
+          if (fullBustSize >= 38 && fullBustSize <= 41) {
+            result.possibleBandCupSizes.push("38DD", "36D", "36DD", "38C");
+            result.possibleBraletteSizes.push("L", "XL");
+          }
+          if (fullBustSize >= 36 && fullBustSize <= 39) {
+            result.possibleBandCupSizes.push("38D");
+            result.possibleBraletteSizes.push("L");
+          }
+        }
+
+        if (underBandSize >= 36 && underBandSize <= 39) {
+          if (fullBustSize >= 39 && fullBustSize <= 43) {
+            result.possibleBandCupSizes.push("40D");
+            result.possibleBraletteSizes.push("XL");
+          }
+        }
+
+        if (underBandSize >= 39 && underBandSize <= 42) {
+          if (fullBustSize >= 43 && fullBustSize <= 46) {
+            result.possibleBandCupSizes.push("N/A");
+            result.possibleBraletteSizes.push("XXL");
+          }
+        }
+
+        // Remove duplicates
+        result.possibleBraletteSizes = [
+          ...new Set(result.possibleBraletteSizes),
+        ];
+
+        if (result.possibleBandCupSizes.length === 0) {
+          result.possibleBandCupSizes.push("Unknown Size");
+        }
+
+        return result;
+      }
+
+      function displaySizeResults(underBandSize, fullBustSize) {
+        const sizeResults = calculateBandCupSize(underBandSize, fullBustSize);
+        let message = "";
+
+        // if (sizeResults.possibleBraletteSizes.length > 0) {
+        //   message += `Your bralette size is: ${sizeResults.possibleBraletteSizes.join(
+        //     " or "
+        //   )}.<br><br>`;
+        // } else {
+        //   message += "Unknown";
+        // }
+
+        if (sizeResults.possibleBandCupSizes.length > 0) {
+          message += `Your reccomended size is <b class="bold-size">${sizeResults.possibleBandCupSizes[0]}<b/>.<br><br>`;
+        } else {
+          message += "Unknown";
+        }
+
+        if (message.includes("Unknown")) {
+          message = "Error: Invlid Size, Please Try Again.";
+        }
+
+        return message;
+      }
+
+      function validateInput(underBandSize, fullBustSize) {
+        let message = "";
+
+        if (underBandSize < 27 || underBandSize > 42) {
+          message = "Error: Invlid Size, Please Try Again.";
+        }
+
+        if (fullBustSize < 30 || fullBustSize > 46) {
+          message = "Error: Invlid Size, Please Try Again.";
+        }
+
+        return message;
+      }
+
+      function displayErrorMessage(message) {
+        document.getElementById("displaySize").innerHTML = message;
+      }
+    </script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .quiz-title {
+        font-family: Montserrat, sans-serif;
+        text-align: center;
+        line-height: 1.4;
+        color: #000;
+        font-size: 20px;
+        font-weight: 400;
+        margin: 32px 0 24px 0;
+      }
+
+      .main-quiz-holder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 672px;
+        border-top: 1px solid #ddd;
+        margin: 0 32px;
+      }
+
+      .input-Holder {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #f1f1f1;
+        height: 126px;
+        width: 100%;
+      }
+
+      .flex-input-holder {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+        padding: 0 32px;
+      }
+
+      .band-size-input {
+        width: 140px;
+      }
+
+      .bust-size-input {
+        margin-left: 12px;
+        width: 140px;
+      }
+
+      .input-label {
+        font-family: Montserrat, sans-serif;
+        font-size: 13px;
+        line-height: 1.4;
+        padding-bottom: 4px;
+      }
+
+      .size-input {
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        width: 118px;
+        max-width: 118px;
+        height: 38px;
+      }
+
+      .example {
+        color: #767676;
+      }
+
+      .submit-button {
+        height: 40px;
+        background-color: #000;
+        font-family: Montserrat, san serrif;
+        font-size: 12px;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 18px;
+        margin-left: 12px;
+        width: 130px;
+        border: none;
+      }
+
+      .displayHolder {
+        height: 40px;
+        font-family: Montserrat, sans-serif;
+        margin-top: 18px;
+        margin-left: 32px;
+        width: 140px;
+      }
+
+      .displayHolder > p {
+        font-size: 14px;
+        line-height: 1.4;
+        color: #000;
+        margin: 0;
+      }
+
+      .bold-size {
+        font-family: Monserrat, sans-serif;
+        font-weight: 600;
+      }
+
+      .help-text {
+        font-family: Montserrat, sans-serif;
+        font-size: 13px;
+        line-height: 1.4;
+        color: #000;
+        margin: 32px 0;
+        letter-spacing: 0.5px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .main-quiz-holder {
+          width: 100%;
+          margin: 0 32px;
+        }
+        .quiz-title {
+          margin: 32px 0 16px 0;
+          text-align: left;
+          width: 100%;
+        }
+        .input-Holder {
+          height: 264px;
+          width: 313px;
+        }
+        .flex-input-holder {
+          flex-direction: column;
+          align-items: start;
+          padding: 16px;
+        }
+
+        .band-size-input {
+          width: 100%;
+        }
+
+        .bust-size-input {
+          margin-left: 0;
+          width: 100%;
+        }
+
+        .size-input {
+          width: calc(100% - 22px);
+          max-width: 100%;
+          margin-bottom: 16px;
+        }
+
+        .submit-button {
+          width: 100%;
+          margin: 0 0 16px 0;
+        }
+
+        .displayHolder {
+          width: 100%;
+          margin: 0;
+          text-align: center;
+          height: 20px;
+        }
+
+        .help-text {
+          margin: 16px 0;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-quiz-holder">
+      <h1 class="quiz-title">Bra Size Calculator</h1>
+      <div class="input-Holder">
+        <div class="flex-input-holder">
+          <div class="band-size-input">
+            <label class="input-label" for="underBandSize"
+              >Band Size <span class="example">(Ex. 34.125)</span></label
+            >
+            <br />
+            <input
+              class="size-input band"
+              type="number"
+              id="underBandSize"
+              placeholder="Under Band Size"
+              min="27"
+              max="42"
+            />
+          </div>
+          <div class="bust-size-input">
+            <label class="input-label" for="fullBustSize"
+              >Bust Size <span class="example">(Ex. 34.125)</span></label
+            >
+            <br />
+
+            <input
+              class="size-input bust"
+              type="number"
+              id="fullBustSize"
+              placeholder="Full Bust Size"
+              min="30"
+              max="46"
+            />
+          </div>
+          <button
+            class="submit-button"
+            onclick="
+          const underBandSize = document.getElementById('underBandSize').value;
+          const fullBustSize = document.getElementById('fullBustSize').value;
+          const errorMessage = validateInput(underBandSize, fullBustSize);
+          if (errorMessage) {
+            displayErrorMessage(errorMessage);
+            if (underBandSize < 27 || underBandSize > 42 || underBandSize === '') {
+              document.querySelector('.band').style.border = '1px solid red';
+            } else {
+              document.querySelector('.band').style.border = '1px solid #ccc';
+            }
+            if (fullBustSize < 30 || fullBustSize > 46 || fullBustSize === '') {
+              document.querySelector('.bust').style.border = '1px solid red';
+            } else {
+              document.querySelector('.bust').style.border = '1px solid #ccc';
+            }
+          } else {
+            const displayMessage = displaySizeResults(underBandSize, fullBustSize);
+            if (displayMessage === 'Error. Invalid size. Please try again.') {
+              document.getElementById('displaySize').innerHTML = displayMessage;
+            } else {
+              document.getElementById('displaySize').innerHTML = displayMessage;
+              document.querySelector('.band').style.border = '1px solid #ccc';
+              document.querySelector('.bust').style.border = '1px solid #ccc';
+            }
+          }
+        "
+          >
+            GET MY SIZE
+          </button>
+          <div class="displayHolder">
+            <p id="displaySize"></p>
+          </div>
+        </div>
+      </div>
+      <p class="help-text">
+        Still Unsure of Your Sizes? We&apos;re here to support you.
+        <b class="bold-size">Call 1-833-428-3699</b> (HAVENWW) anytime to speak
+        with an associate.
+      </p>
+    </div>
+  </body>
+</html>
