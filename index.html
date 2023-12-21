@@ -177,7 +177,7 @@
         height: 100vh;
       }
 
-      .quiz-title {
+      .bra-size-guide .quiz-title {
         font-family: Montserrat, sans-serif;
         text-align: center;
         line-height: 1.4;
@@ -186,8 +186,7 @@
         font-weight: 400;
         margin: 32px 0 24px 0;
       }
-
-      .main-quiz-holder {
+      .bra-size-guide .main-quiz-holder {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -195,8 +194,7 @@
         border-top: 1px solid #ddd;
         margin: 0 32px;
       }
-
-      .input-Holder {
+      .bra-size-guide .input-Holder {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -204,8 +202,7 @@
         height: 126px;
         width: 100%;
       }
-
-      .flex-input-holder {
+      .bra-size-guide .flex-input-holder {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -213,36 +210,30 @@
         width: 100%;
         padding: 0 32px;
       }
-
-      .band-size-input {
+      .bra-size-guide .band-size-input {
         width: 140px;
       }
-
-      .bust-size-input {
+      .bra-size-guide .bust-size-input {
         margin-left: 12px;
         width: 140px;
       }
-
-      .input-label {
+      .bra-size-guide .input-label {
         font-family: Montserrat, sans-serif;
         font-size: 13px;
         line-height: 1.4;
         padding-bottom: 4px;
       }
-
-      .size-input {
+      .bra-size-guide .size-input {
         padding: 0 10px;
         border: 1px solid #ccc;
         width: 118px;
         max-width: 118px;
         height: 38px;
       }
-
-      .example {
+      .bra-size-guide .example {
         color: #767676;
       }
-
-      .submit-button {
+      .bra-size-guide .submit-button {
         height: 40px;
         background-color: #000;
         font-family: Montserrat, san serrif;
@@ -254,28 +245,24 @@
         width: 130px;
         border: none;
       }
-
-      .displayHolder {
+      .bra-size-guide .displayHolder {
         height: 40px;
         font-family: Montserrat, sans-serif;
         margin-top: 18px;
         margin-left: 32px;
         width: 140px;
       }
-
-      .displayHolder > p {
+      .bra-size-guide .displayHolder > p {
         font-size: 14px;
         line-height: 1.4;
         color: #000;
         margin: 0;
       }
-
-      .bold-size {
+      .bra-size-guide .bold-size {
         font-family: Monserrat, sans-serif;
         font-weight: 600;
       }
-
-      .help-text {
+      .bra-size-guide .help-text {
         font-family: Montserrat, sans-serif;
         font-size: 13px;
         line-height: 1.4;
@@ -283,56 +270,49 @@
         margin: 32px 0;
         letter-spacing: 0.5px;
       }
-
       @media screen and (max-width: 768px) {
-        .main-quiz-holder {
+        .bra-size-guide .main-quiz-holder {
           width: 100%;
           margin: 0 32px;
           max-width: 313px;
         }
-        .quiz-title {
+        .bra-size-guide .quiz-title {
           margin: 32px 0 16px 0;
           text-align: left;
           width: 100%;
         }
-        .input-Holder {
+        .bra-size-guide .input-Holder {
           height: 264px;
           width: 313px;
         }
-        .flex-input-holder {
+        .bra-size-guide .flex-input-holder {
           flex-direction: column;
           align-items: start;
           padding: 16px;
         }
-
-        .band-size-input {
+        .bra-size-guide .band-size-input {
           width: 100%;
         }
-
-        .bust-size-input {
+        .bra-size-guide .bust-size-input {
           margin-left: 0;
           width: 100%;
         }
-
-        .size-input {
+        .bra-size-guide .size-input {
           width: calc(100% - 22px);
           max-width: 100%;
           margin-bottom: 16px;
         }
-
-        .submit-button {
+        .bra-size-guide .submit-button {
           width: 100%;
           margin: 0 0 16px 0;
         }
-
-        .displayHolder {
+        .bra-size-guide .displayHolder {
           width: 100%;
           margin: 0;
           text-align: center;
           height: 20px;
         }
-
-        .help-text {
+        .bra-size-guide .help-text {
           margin: 16px 0;
           width: 100%;
           letter-spacing: normal;
@@ -341,52 +321,54 @@
     </style>
   </head>
   <body>
-    <div class="main-quiz-holder">
-      <h1 class="quiz-title">Bra Size Calculator</h1>
-      <div class="input-Holder">
-        <div class="flex-input-holder">
-          <div class="band-size-input">
-            <label class="input-label" for="underBandSize"
-              >Band Size <span class="example">(Ex. 34.125)</span></label
-            >
-            <br />
-            <input
-              class="size-input band"
-              type="number"
-              id="underBandSize"
-              placeholder="Under Band Size"
-              min="27"
-              max="42"
-            />
-          </div>
-          <div class="bust-size-input">
-            <label class="input-label" for="fullBustSize"
-              >Bust Size <span class="example">(Ex. 34.125)</span></label
-            >
-            <br />
+    <div class="bra-size-guide">
+      <div class="main-quiz-holder">
+        <h1 class="quiz-title">Bra Size Calculator</h1>
+        <div class="input-Holder">
+          <div class="flex-input-holder">
+            <div class="band-size-input">
+              <label class="input-label" for="underBandSize"
+                >Band Size <span class="example">(Ex. 34.125)</span></label
+              >
+              <br />
+              <input
+                class="size-input band"
+                type="number"
+                id="underBandSize"
+                placeholder="Under Band Size"
+                min="27"
+                max="42"
+              />
+            </div>
+            <div class="bust-size-input">
+              <label class="input-label" for="fullBustSize"
+                >Bust Size <span class="example">(Ex. 34.125)</span></label
+              >
+              <br />
 
-            <input
-              class="size-input bust"
-              type="number"
-              id="fullBustSize"
-              placeholder="Full Bust Size"
-              min="30"
-              max="46"
-            />
-          </div>
-          <button class="submit-button" onclick="buttonClick()">
-            GET MY SIZE
-          </button>
-          <div class="displayHolder">
-            <p id="displaySize"></p>
+              <input
+                class="size-input bust"
+                type="number"
+                id="fullBustSize"
+                placeholder="Full Bust Size"
+                min="30"
+                max="46"
+              />
+            </div>
+            <button class="submit-button" onclick="buttonClick()">
+              GET MY SIZE
+            </button>
+            <div class="displayHolder">
+              <p id="displaySize"></p>
+            </div>
           </div>
         </div>
+        <p class="help-text">
+          Still Unsure of Your Sizes? We&apos;re here to support you.
+          <b class="bold-size">Call 1-833-428-3699</b> (HAVENWW) anytime to
+          speak with an associate.
+        </p>
       </div>
-      <p class="help-text">
-        Still Unsure of Your Sizes? We&apos;re here to support you.
-        <b class="bold-size">Call 1-833-428-3699</b> (HAVENWW) anytime to speak
-        with an associate.
-      </p>
     </div>
   </body>
 </html>
