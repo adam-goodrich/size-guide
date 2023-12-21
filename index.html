@@ -133,6 +133,41 @@
       function displayErrorMessage(message) {
         document.getElementById("displaySize").innerHTML = message;
       }
+
+      function buttonClick() {
+        const underBandSize = document.getElementById("underBandSize").value;
+        const fullBustSize = document.getElementById("fullBustSize").value;
+        const errorMessage = validateInput(underBandSize, fullBustSize);
+        if (errorMessage) {
+          displayErrorMessage(errorMessage);
+          if (
+            underBandSize < 27 ||
+            underBandSize > 42 ||
+            underBandSize === ""
+          ) {
+            document.querySelector(".band").style.border = "1px solid red";
+          } else {
+            document.querySelector(".band").style.border = "1px solid #ccc";
+          }
+          if (fullBustSize < 30 || fullBustSize > 46 || fullBustSize === "") {
+            document.querySelector(".bust").style.border = "1px solid red";
+          } else {
+            document.querySelector(".bust").style.border = "1px solid #ccc";
+          }
+        } else {
+          const displayMessage = displaySizeResults(
+            underBandSize,
+            fullBustSize
+          );
+          if (displayMessage === "Error. Invalid size. Please try again.") {
+            document.getElementById("displaySize").innerHTML = displayMessage;
+          } else {
+            document.getElementById("displaySize").innerHTML = displayMessage;
+            document.querySelector(".band").style.border = "1px solid #ccc";
+            document.querySelector(".bust").style.border = "1px solid #ccc";
+          }
+        }
+      }
     </script>
     <style>
       body {
@@ -252,8 +287,8 @@
       @media screen and (max-width: 768px) {
         .main-quiz-holder {
           width: 100%;
-          max-width: 313px;
           margin: 0 32px;
+          max-width: 313px;
         }
         .quiz-title {
           margin: 32px 0 16px 0;
@@ -339,36 +374,7 @@
               max="46"
             />
           </div>
-          <button
-            class="submit-button"
-            onclick="
-          const underBandSize = document.getElementById('underBandSize').value;
-          const fullBustSize = document.getElementById('fullBustSize').value;
-          const errorMessage = validateInput(underBandSize, fullBustSize);
-          if (errorMessage) {
-            displayErrorMessage(errorMessage);
-            if (underBandSize < 27 || underBandSize > 42 || underBandSize === '') {
-              document.querySelector('.band').style.border = '1px solid red';
-            } else {
-              document.querySelector('.band').style.border = '1px solid #ccc';
-            }
-            if (fullBustSize < 30 || fullBustSize > 46 || fullBustSize === '') {
-              document.querySelector('.bust').style.border = '1px solid red';
-            } else {
-              document.querySelector('.bust').style.border = '1px solid #ccc';
-            }
-          } else {
-            const displayMessage = displaySizeResults(underBandSize, fullBustSize);
-            if (displayMessage === 'Error. Invalid size. Please try again.') {
-              document.getElementById('displaySize').innerHTML = displayMessage;
-            } else {
-              document.getElementById('displaySize').innerHTML = displayMessage;
-              document.querySelector('.band').style.border = '1px solid #ccc';
-              document.querySelector('.bust').style.border = '1px solid #ccc';
-            }
-          }
-        "
-          >
+          <button class="submit-button" onclick="buttonClick()">
             GET MY SIZE
           </button>
           <div class="displayHolder">
